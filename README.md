@@ -19,6 +19,20 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 ```sh
 npm install
 ```
+```shell
+npm i --save ant-design-vue@4.x
+```
+```shell
+npm install @ant-design/icons --save
+```
+```sh
+npm axios
+```
+
+```shell
+npm i --save-dev @umijs/openapi
+```
+
 
 ### Compile and Hot-Reload for Development
 
