@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import BasicLayout from '@/layouts/BasicLayout.vue'
 import { useLoginUserStore } from '@/stores/user.ts'
 

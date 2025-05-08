@@ -101,6 +101,18 @@ declare namespace API {
     message?: string
   }
 
+  type BaseResponsePageSpace_ = {
+    code?: number
+    data?: PageSpace_
+    message?: string
+  }
+
+  type BaseResponsePageSpaceVO_ = {
+    code?: number
+    data?: PageSpaceVO_
+    message?: string
+  }
+
   type BaseResponsePageUserVO_ = {
     code?: number
     data?: PageUserVO_
@@ -125,6 +137,12 @@ declare namespace API {
     message?: string
   }
 
+  type BaseResponseSpace_ = {
+    code?: number
+    data?: Space
+    message?: string
+  }
+
   type BaseResponseSpaceUsageAnalyzeResponse_ = {
     code?: number
     data?: SpaceUsageAnalyzeResponse
@@ -134,6 +152,12 @@ declare namespace API {
   type BaseResponseSpaceUser_ = {
     code?: number
     data?: SpaceUser
+    message?: string
+  }
+
+  type BaseResponseSpaceVO_ = {
+    code?: number
+    data?: SpaceVO
     message?: string
   }
 
@@ -181,6 +205,16 @@ declare namespace API {
   }
 
   type getPictureVOByIdUsingGETParams = {
+    /** id */
+    id?: number
+  }
+
+  type getSpaceByIdUsingGETParams = {
+    /** id */
+    id?: number
+  }
+
+  type getSpaceVOByIdUsingGETParams = {
     /** id */
     id?: number
   }
@@ -240,6 +274,22 @@ declare namespace API {
     current?: number
     pages?: number
     records?: PictureVO[]
+    size?: number
+    total?: number
+  }
+
+  type PageSpace_ = {
+    current?: number
+    pages?: number
+    records?: Space[]
+    size?: number
+    total?: number
+  }
+
+  type PageSpaceVO_ = {
+    current?: number
+    pages?: number
+    records?: SpaceVO[]
     size?: number
     total?: number
   }
@@ -379,6 +429,7 @@ declare namespace API {
     picScale?: number
     picSize?: number
     picWidth?: number
+    spaceId?: number
     tags?: string[]
     updateTime?: string
     url?: string
@@ -411,6 +462,12 @@ declare namespace API {
     userId?: number
   }
 
+  type SpaceAddRequest = {
+    spaceLevel?: number
+    spaceName?: string
+    spaceType?: number
+  }
+
   type SpaceCategoryAnalyzeRequest = {
     queryAll?: boolean
     queryPublic?: boolean
@@ -423,11 +480,28 @@ declare namespace API {
     totalSize?: number
   }
 
+  type SpaceEditRequest = {
+    id?: number
+    spaceName?: string
+  }
+
   type SpaceLevel = {
     maxCount?: number
     maxSize?: number
     text?: string
     value?: number
+  }
+
+  type SpaceQueryRequest = {
+    current?: number
+    id?: number
+    pageSize?: number
+    sortField?: string
+    sortOrder?: string
+    spaceLevel?: number
+    spaceName?: string
+    spaceType?: number
+    userId?: number
   }
 
   type SpaceRankAnalyzeRequest = {
@@ -542,6 +616,7 @@ declare namespace API {
     id?: number
     maxCount?: number
     maxSize?: number
+    permissionList?: string[]
     spaceLevel?: number
     spaceName?: string
     spaceType?: number
@@ -630,5 +705,9 @@ declare namespace API {
     userName?: string
     userProfile?: string
     userRole?: string
+  }
+
+  type VipExchangeRequest = {
+    vipCode?: string
   }
 }

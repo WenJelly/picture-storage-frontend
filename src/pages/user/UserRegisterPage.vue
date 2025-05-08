@@ -4,29 +4,29 @@
     <div class="desc">企业级智能协同云图库</div>
     <a-form
       :model="formState"
-      name="basic"
-      label-align="left"
       autocomplete="off"
+      label-align="left"
+      name="basic"
       @finish="handleSubmit"
     >
-      <a-form-item name="userAccount" :rules="[{ required: true, message: '请输入账号' }]">
+      <a-form-item :rules="[{ required: true, message: '请输入账号' }]" name="userAccount">
         <a-input v-model:value="formState.userAccount" placeholder="请输入账号" />
       </a-form-item>
       <a-form-item
-        name="userPassword"
         :rules="[
           { required: true, message: '请输入密码' },
           { min: 8, message: '密码不能小于 8 位' },
         ]"
+        name="userPassword"
       >
         <a-input-password v-model:value="formState.userPassword" placeholder="请输入密码" />
       </a-form-item>
       <a-form-item
-        name="checkPassword"
         :rules="[
           { required: true, message: '请输入确认密码' },
           { min: 8, message: '确认密码不能小于 8 位' },
         ]"
+        name="checkPassword"
       >
         <a-input-password v-model:value="formState.checkPassword" placeholder="请输入确认密码" />
       </a-form-item>
@@ -35,13 +35,13 @@
         <RouterLink to="/user/login">去登录</RouterLink>
       </div>
       <a-form-item>
-        <a-button type="primary" html-type="submit" style="width: 100%">注册</a-button>
+        <a-button html-type="submit" style="width: 100%" type="primary">注册</a-button>
       </a-form-item>
     </a-form>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
