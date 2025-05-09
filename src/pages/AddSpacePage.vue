@@ -44,11 +44,13 @@ import {
   addSpaceUsingPost,
   getSpaceVoByIdUsingGet,
   listSpaceLevelUsingGet,
-  updateSpaceUsingPost,
+  updateSpaceUsingPost
 } from '@/api/spaceController.ts'
 import { useRoute, useRouter } from 'vue-router'
 import { SPACE_LEVEL_OPTIONS, SPACE_TYPE_ENUM, SPACE_TYPE_MAP } from '@/constants/space.ts'
 import { formatSize } from '../utils'
+
+
 
 const space = ref<API.SpaceVO>()
 const spaceForm = reactive<API.SpaceAddRequest | API.SpaceEditRequest>({})
@@ -94,13 +96,13 @@ const handleSubmit = async (values: any) => {
     // 更新
     res = await updateSpaceUsingPost({
       id: spaceId,
-      ...spaceForm,
+      ...spaceForm
     })
   } else {
     // 创建
     res = await addSpaceUsingPost({
       ...spaceForm,
-      spaceType: spaceType.value,
+      spaceType: spaceType.value
     })
   }
   // 操作成功
@@ -109,6 +111,7 @@ const handleSubmit = async (values: any) => {
     // 跳转到空间详情页
     router.push({
       path: `/space/${res.data.data}`,
+      
     })
   } else {
     message.error('操作失败，' + res.data.message)
@@ -122,7 +125,7 @@ const getOldSpace = async () => {
   const id = route.query?.id
   if (id) {
     const res = await getSpaceVoByIdUsingGet({
-      id,
+      id
     })
     if (res.data.code === 0 && res.data.data) {
       const data = res.data.data

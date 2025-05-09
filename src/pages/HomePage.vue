@@ -1,5 +1,8 @@
 <template>
   <div id="homePage">
+    <div class="carousel">
+      <HomeCarousel />
+    </div>
     <!-- 搜索框 -->
     <div class="search-bar">
       <a-input-search
@@ -48,7 +51,8 @@ import {
   listPictureVoByPageUsingPost,
 } from '@/api/pictureController.ts'
 import { message } from 'ant-design-vue'
-import PictureList from '@/components/PictureList.vue' // 定义数据
+import PictureList from '@/components/PictureList.vue'
+import HomeCarousel from '@/components/HomeCarousel.vue' // 定义数据
 
 // 定义数据
 const dataList = ref<API.PictureVO[]>([])
@@ -137,6 +141,11 @@ onMounted(() => {
 <style scoped>
 #homePage {
   margin-bottom: 16px;
+}
+
+#homePage .carousel {
+  margin-top: 16px;
+  margin-bottom: 20px;
 }
 
 #homePage .search-bar {

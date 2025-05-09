@@ -1,7 +1,7 @@
 <template>
   <div id="addPicturePage">
     <h2 style="margin-bottom: 16px">
-      {{ route.query?.id ? '修改图片' : '创建图片' }}
+      {{ route.query?.id ? '修改图片' : '上传图片' }}
     </h2>
     <a-typography-paragraph v-if="spaceId" type="secondary">
       保存至空间：<a :href="`/space/${spaceId}`" target="_blank">{{ spaceId }}</a>

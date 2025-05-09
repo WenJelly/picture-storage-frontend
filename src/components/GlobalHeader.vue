@@ -70,8 +70,8 @@ const originItems = [
   },
   {
     key: '/add_picture',
-    label: '创建图片',
-    title: '创建图片',
+    label: '上传图片',
+    title: '上传图片',
   },
   {
     key: '/admin/userManage',
