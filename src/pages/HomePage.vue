@@ -32,7 +32,8 @@
       </a-space>
     </div>
     <!-- 图片列表 -->
-    <PictureList :dataList="dataList" :loading="loading" />
+<!--    <PictureList :dataList="dataList" :loading="loading" />-->
+    <Test :dataList="dataList" :loading="loading"/>
     <!-- 分页 -->
     <a-pagination
       v-model:current="searchParams.current"
@@ -52,7 +53,8 @@ import {
 } from '@/api/pictureController.ts'
 import { message } from 'ant-design-vue'
 import PictureList from '@/components/PictureList.vue'
-import HomeCarousel from '@/components/HomeCarousel.vue' // 定义数据
+import HomeCarousel from '@/components/HomeCarousel.vue'
+import Test from '@/components/PictureListTest.vue'
 
 // 定义数据
 const dataList = ref<API.PictureVO[]>([])
@@ -62,7 +64,7 @@ const loading = ref(true)
 // 搜索条件
 const searchParams = reactive<API.PictureQueryRequest>({
   current: 1,
-  pageSize: 12,
+  pageSize: 15,
   sortField: 'createTime',
   sortOrder: 'descend',
 })
@@ -141,10 +143,10 @@ onMounted(() => {
 <style scoped>
 #homePage {
   margin-bottom: 16px;
+  background-color: #fafafa;
 }
 
 #homePage .carousel {
-  margin-top: 16px;
   margin-bottom: 20px;
 }
 

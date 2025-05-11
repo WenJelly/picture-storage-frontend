@@ -14,7 +14,7 @@
               <img
                 :alt="picture.name"
                 :src="picture.thumbnailUrl ?? picture.url"
-                style="height: 180px; object-fit: cover"
+                style="object-fit: cover"
               />
             </template>
             <a-card-meta :title="picture.name">
@@ -39,8 +39,8 @@
         </a-list-item>
       </template>
     </a-list>
+    </div>
     <ShareModal ref="shareModalRef" :link="shareLink" />
-  </div>
 </template>
 
 <script lang="ts" setup>

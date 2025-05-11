@@ -55,14 +55,22 @@
       <color-picker format="hex" @pureColorChange="onColorChange" />
     </a-form-item>
     <!-- 图片列表 -->
-    <PictureList
+    <!--    <PictureList-->
+    <!--      :canDelete="canDeletePicture"-->
+    <!--      :canEdit="canEditPicture"-->
+    <!--      :dataList="dataList"-->
+    <!--      :loading="loading"-->
+    <!--      :onReload="fetchData"-->
+    <!--      :showOp="true"-->
+    <!--    />-->
+    <Test
       :canDelete="canDeletePicture"
       :canEdit="canEditPicture"
       :dataList="dataList"
       :loading="loading"
       :onReload="fetchData"
       :showOp="true"
-    />
+    ></Test>
     <!-- 分页 -->
     <a-pagination
       v-model:current="searchParams.current"
@@ -89,13 +97,13 @@ import {
   searchPictureByColorUsingPost,
 } from '@/api/pictureController.ts'
 import { formatSize } from '@/utils'
-import PictureList from '@/components/PictureList.vue'
 import PictureSearchForm from '@/components/PictureSearchForm.vue'
 import { ColorPicker } from 'vue3-colorpicker'
 import 'vue3-colorpicker/style.css'
 import BatchEditPictureModal from '@/components/BatchEditPictureModal.vue'
 import { BarChartOutlined, EditOutlined, TeamOutlined } from '@ant-design/icons-vue'
 import { SPACE_PERMISSION_ENUM, SPACE_TYPE_MAP } from '../constants/space.ts'
+import Test from '@/components/PictureListTest.vue'
 
 interface Props {
   id: string | number

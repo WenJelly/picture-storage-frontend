@@ -4,7 +4,7 @@ import { message } from 'ant-design-vue'
 // 创建 Axios 实例
 const myAxios = axios.create({
   baseURL: 'http://localhost:8081',
-  timeout: 6000,
+  timeout: 20000,
   withCredentials: true, // 携带cookie
 })
 
