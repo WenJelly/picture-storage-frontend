@@ -1,31 +1,39 @@
 <template>
   <a-carousel autoplay>
-    <div v-for="(img, index) in carouselImages" :key="index">
-      <img :src="img.url" :alt="img.alt" class="carousel-image" />
+    <div v-for="(img, index) in dataList" :key="index">
+      <img :src="img.url" :alt="img.introduction" class="carousel-image" />
     </div>
   </a-carousel>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 // 定义 props 接收父组件传递的图片数据
-const props = defineProps({
-  carouselImages: {
-    type: Array,
-    required: true,
-    // 默认
-    default: () => [
-      {
-        url: 'https://picsum.photos/1200/400?random=1', // 网络图片示例
-        alt: 'Banner 1',
-        text: 'First Slide',
-      },
-      {
-        url: 'https://picsum.photos/1200/400?random=1', // 网络图片示例
-        alt: 'Banner 1',
-        text: 'First Slide',
-      },
-    ],
-  },
+interface Props {
+  dataList?: API.PictureVO[]
+  loading?: boolean
+  showOp?: boolean
+  canEdit?: boolean
+  canDelete?: boolean
+  onReload?: () => void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  default: () => [
+    {
+      url: 'https://picsum.photos/1200/400?random=1', // 网络图片示例
+      alt: 'Banner 1',
+      text: 'First Slide',
+    },
+    {
+      url: 'https://picsum.photos/1200/400?random=1', // 网络图片示例
+      alt: 'Banner 1',
+      text: 'First Slide',
+    },
+  ],
+  loading: false,
+  showOp: false,
+  canEdit: false,
+  canDelete: false,
 })
 </script>
 

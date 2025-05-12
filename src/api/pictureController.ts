@@ -77,6 +77,14 @@ export async function getPictureVoByIdUsingGet(
   })
 }
 
+/** getHomeCarousel GET /api/picture/home/carousel */
+export async function getHomeCarouselUsingGet(options?: { [key: string]: any }) {
+  return request<API.BaseResponseListPictureVO_>('/api/picture/home/carousel', {
+    method: 'GET',
+    ...(options || {}),
+  })
+}
+
 /** listPictureByPage POST /api/picture/list/page */
 export async function listPictureByPageUsingPost(
   body: API.PictureQueryRequest,

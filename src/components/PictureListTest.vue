@@ -26,7 +26,7 @@
             </div>
 
             <div class="action-buttons">
-              <!--                点赞-->
+              <!--点赞-->
               <a-button type="text" class="action-btn">
                 <template #icon>
                   <LikeOutlined :style="{ color: '#fff' }" />

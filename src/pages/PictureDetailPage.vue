@@ -4,7 +4,7 @@
       <!-- 图片预览 -->
       <a-col :md="16" :sm="24" :xl="18">
         <a-card title="图片预览">
-          <a-image :src="picture.url" style="max-height: 600px; object-fit: contain" />
+          <a-image :src="picture.url" style="height: ; object-fit: contain" />
         </a-card>
       </a-col>
       <!-- 图片信息区域 -->
@@ -71,12 +71,12 @@
             <a-button :icon="h(ShareAltOutlined)" ghost type="primary" @click="doShare">
               分享
             </a-button>
-            <!--            <a-button v-if="canEdit" :icon="h(EditOutlined)" type="default" @click="doEdit">-->
-            <!--              编辑-->
-            <!--            </a-button>-->
-            <!--            <a-button v-if="canDelete" :icon="h(DeleteOutlined)" danger @click="doDelete">-->
-            <!--              删除-->
-            <!--            </a-button>-->
+            <a-button v-if="canEdit" :icon="h(EditOutlined)" type="default" @click="doEdit">
+              编辑
+            </a-button>
+            <a-button v-if="canDelete" :icon="h(DeleteOutlined)" danger @click="doDelete">
+              删除
+            </a-button>
           </a-space>
         </a-card>
       </a-col>
@@ -86,13 +86,19 @@
 </template>
 
 <script lang="ts" setup>
-import { h, onMounted, ref } from 'vue'
+import { computed, h, onMounted, ref } from 'vue'
 import { deletePictureUsingPost, getPictureVoByIdUsingGet } from '@/api/pictureController.ts'
 import { message } from 'ant-design-vue'
-import { DownloadOutlined, ShareAltOutlined } from '@ant-design/icons-vue'
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  EditOutlined,
+  ShareAltOutlined
+} from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { downloadImage, formatSize, toHexColor } from '@/utils'
 import ShareModal from '@/components/ShareModal.vue'
+import { SPACE_PERMISSION_ENUM } from '@/constants/space.ts'
 
 interface Props {
   id: string | number
@@ -102,15 +108,15 @@ const props = defineProps<Props>()
 const picture = ref<API.PictureVO>({})
 
 // 通用权限检查函数
-// function createPermissionChecker(permission: string) {
-//   return computed(() => {
-//     return (picture.value.permissionList ?? []).includes(permission)
-//   })
-// }
+function createPermissionChecker(permission: string) {
+  return computed(() => {
+    return (picture.value.permissionList ?? []).includes(permission)
+  })
+}
 
 // 定义权限检查
-// const canEdit = createPermissionChecker(SPACE_PERMISSION_ENUM.PICTURE_EDIT)
-// const canDelete = createPermissionChecker(SPACE_PERMISSION_ENUM.PICTURE_DELETE)
+const canEdit = createPermissionChecker(SPACE_PERMISSION_ENUM.PICTURE_EDIT)
+const canDelete = createPermissionChecker(SPACE_PERMISSION_ENUM.PICTURE_DELETE)
 
 // 获取图片详情
 const fetchPictureDetail = async () => {

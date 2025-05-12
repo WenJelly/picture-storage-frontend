@@ -323,6 +323,7 @@ declare namespace API {
     id?: number
     introduction?: string
     isDelete?: number
+    likeCount?: number
     name?: string
     picColor?: string
     picFormat?: string
@@ -340,6 +341,7 @@ declare namespace API {
     updateTime?: string
     url?: string
     userId?: number
+    viewCount?: number
   }
 
   type PictureEditByBatchRequest = {
@@ -423,6 +425,7 @@ declare namespace API {
     editTime?: string
     id?: number
     introduction?: string
+    likeCount?: number
     name?: string
     permissionList?: string[]
     picColor?: string
@@ -438,6 +441,7 @@ declare namespace API {
     url?: string
     user?: UserVO
     userId?: number
+    viewCount?: number
   }
 
   type SearchPictureByColorRequest = {

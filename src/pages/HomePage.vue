@@ -1,7 +1,7 @@
 <template>
   <div id="homePage">
     <div class="carousel">
-      <HomeCarousel />
+      <HomeCarousel :dataList="carouseList" />
     </div>
     <!-- 搜索框 -->
     <div class="search-bar">
@@ -32,8 +32,8 @@
       </a-space>
     </div>
     <!-- 图片列表 -->
-<!--    <PictureList :dataList="dataList" :loading="loading" />-->
-    <Test :dataList="dataList" :loading="loading"/>
+    <!--    <PictureList :dataList="dataList" :loading="loading" />-->
+    <Test :dataList="dataList" :loading="loading" />
     <!-- 分页 -->
     <a-pagination
       v-model:current="searchParams.current"
@@ -48,11 +48,11 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
 import {
+  getHomeCarouselUsingGet,
   listPictureTagCategoryUsingGet,
   listPictureVoByPageUsingPost,
 } from '@/api/pictureController.ts'
 import { message } from 'ant-design-vue'
-import PictureList from '@/components/PictureList.vue'
 import HomeCarousel from '@/components/HomeCarousel.vue'
 import Test from '@/components/PictureListTest.vue'
 
@@ -60,6 +60,7 @@ import Test from '@/components/PictureListTest.vue'
 const dataList = ref<API.PictureVO[]>([])
 const total = ref(0)
 const loading = ref(true)
+const carouseList = ref<API.PictureVO[]>([])
 
 // 搜索条件
 const searchParams = reactive<API.PictureQueryRequest>({
@@ -87,11 +88,17 @@ const fetchData = async () => {
     }
   })
   const res = await listPictureVoByPageUsingPost(params)
+  const res2 = await getHomeCarouselUsingGet()
   if (res.data.code === 0 && res.data.data) {
     dataList.value = res.data.data.records ?? []
     total.value = res.data.data.total ?? 0
   } else {
     message.error('获取数据失败，' + res.data.message)
+  }
+  if (res2.data.code === 0 && res2.data.data) {
+    carouseList.value = res2.data.data ?? []
+  } else {
+    message.error('轮播图数据获取失败，' + res2.data.message)
   }
   loading.value = false
 }
