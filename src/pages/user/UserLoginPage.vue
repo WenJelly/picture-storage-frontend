@@ -1,6 +1,6 @@
 <template>
   <div id="userLoginPage">
-    <h2 class="title">云图库 - 用户登录</h2>
+    <h2 class="title">智能云图库 - 用户登录</h2>
     <div class="desc">企业级智能协同云图库</div>
     <a-form :model="formState" autocomplete="off" name="basic" @finish="handleSubmit">
       <a-form-item :rules="[{ required: true, message: '请输入账号' }]" name="userAccount">

@@ -1,8 +1,8 @@
 <template>
   <div id="homePage">
-    <div class="carousel">
-      <HomeCarousel :dataList="carouseList" />
-    </div>
+    <!--    <div class="carousel">-->
+    <!--      <HomeCarousel :dataList="carouseList" />-->
+    <!--    </div>-->
     <!-- 搜索框 -->
     <div class="search-bar">
       <a-input-search
@@ -53,19 +53,18 @@ import {
   listPictureVoByPageUsingPost,
 } from '@/api/pictureController.ts'
 import { message } from 'ant-design-vue'
-import HomeCarousel from '@/components/HomeCarousel.vue'
 import Test from '@/components/PictureListTest.vue'
 
 // 定义数据
 const dataList = ref<API.PictureVO[]>([])
 const total = ref(0)
 const loading = ref(true)
-const carouseList = ref<API.PictureVO[]>([])
+// const carouseList = ref<API.PictureVO[]>([])
 
 // 搜索条件
 const searchParams = reactive<API.PictureQueryRequest>({
   current: 1,
-  pageSize: 15,
+  pageSize: 16,
   sortField: 'createTime',
   sortOrder: 'descend',
 })
@@ -88,18 +87,21 @@ const fetchData = async () => {
     }
   })
   const res = await listPictureVoByPageUsingPost(params)
-  const res2 = await getHomeCarouselUsingGet()
+  // const res2 = await getHomeCarouselUsingGet()
   if (res.data.code === 0 && res.data.data) {
+    if (res.data.data.records?.length === 0) {
+      message.info('没有搜索到对应数据')
+    }
     dataList.value = res.data.data.records ?? []
     total.value = res.data.data.total ?? 0
   } else {
     message.error('获取数据失败，' + res.data.message)
   }
-  if (res2.data.code === 0 && res2.data.data) {
-    carouseList.value = res2.data.data ?? []
-  } else {
-    message.error('轮播图数据获取失败，' + res2.data.message)
-  }
+  // if (res2.data.code === 0 && res2.data.data) {
+  //   carouseList.value = res2.data.data ?? []
+  // } else {
+  //   message.error('轮播图数据获取失败，' + res2.data.message)
+  // }
   loading.value = false
 }
 

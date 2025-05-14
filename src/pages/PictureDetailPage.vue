@@ -4,7 +4,7 @@
       <!-- 图片预览 -->
       <a-col :md="16" :sm="24" :xl="18">
         <a-card title="图片预览">
-          <a-image :src="picture.url" style="height: ; object-fit: contain" />
+          <a-image :src="picture.url" style="height: 100%; object-fit: contain" />
         </a-card>
       </a-col>
       <!-- 图片信息区域 -->

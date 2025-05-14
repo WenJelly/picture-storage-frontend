@@ -1,6 +1,6 @@
 <template>
   <div id="userRegisterPage">
-    <h2 class="title">鱼皮云图库 - 用户注册</h2>
+    <h2 class="title">智能云图库 - 用户注册</h2>
     <div class="desc">企业级智能协同云图库</div>
     <a-form
       :model="formState"
